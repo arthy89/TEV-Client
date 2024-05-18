@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Navigation from "./Navigation";
 
 const client = new ApolloClient({
-  uri: "http://192.168.1.50:4000/graphql",
+  uri: "https://tev-server.vercel.app/graphql",
   cache: new InMemoryCache(),
 });
 
