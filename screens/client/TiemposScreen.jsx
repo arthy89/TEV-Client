@@ -175,9 +175,9 @@ const TiemposScreen = () => {
       </View>
 
       {selectedEspecial && (
-        <View>
+        <ScrollView>
           <TiempoTabla especial={selectedEspecial} />
-        </View>
+        </ScrollView>
       )}
     </Layout>
   );
