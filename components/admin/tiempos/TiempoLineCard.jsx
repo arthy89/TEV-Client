@@ -5,12 +5,14 @@ import { DEL_TIEMPO } from "../../../graphql/evento/tiempos";
 const TiempoLineCard = ({
   tiempo,
   posicion,
+  especiales,
   diferenciaPrimero,
   diferenciaAnterior,
   admin,
 }) => {
   // console.log(tiempo);
   // console.log(tiempo.horaLlegada);
+  // !! esta redundando tiempo salida porque se esta pasando en horallegada el tiempoTotal
 
   const tiempoPena = tiempo.penalizacion;
 
@@ -73,7 +75,7 @@ const TiempoLineCard = ({
           <Text className="text-3xl" style={{ marginBottom: -10 }}>
             {tiempoFormateado}
           </Text>
-          {tiempoPena !== null && (
+          {tiempoPena !== null && tiempoPena !== 0 && (
             <Text className="text-red-500 font-bold text-base">
               {mlsToFormato(tiempoPena)}
             </Text>
@@ -98,6 +100,11 @@ const TiempoLineCard = ({
             {tiempo.tripulacion.navegante.nombre}{" "}
             {tiempo.tripulacion.navegante.apellidos}
           </Text>
+          {especiales != null && (
+            <Text className="text-zinc-700 italic" style={{ marginTop: -5 }}>
+              EC: {especiales}
+            </Text>
+          )}
         </View>
         <View>
           <Text className="text-lg font-medium" style={{ marginBottom: -10 }}>

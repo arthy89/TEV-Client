@@ -5,6 +5,7 @@ import { useLazyQuery, useQuery } from "@apollo/client";
 import { GET_EVENTO_TIEMPOS } from "../../graphql/evento/evento";
 import { useEffect, useState } from "react";
 import TiempoTabla from "../../components/admin/tiempos/TiempoTabla";
+import TablaAcumulada from "../../components/admin/tiempos/TablaAcumulada";
 import { io } from "socket.io-client";
 import { GET_TRIPULACION } from "../../graphql/evento/tripulacion";
 
@@ -15,6 +16,7 @@ const TiemposScreen = () => {
   const [selectedEspecial, setSelectedEspecial] = useState(null);
   const [especiales, setEspeciales] = useState([]);
   const [socket, setSocket] = useState(null);
+  const [showTotal, setShowTotal] = useState(false);
 
   const [getTripulacion, { data: tripulacionData }] =
     useLazyQuery(GET_TRIPULACION);
@@ -43,7 +45,8 @@ const TiemposScreen = () => {
   }, [route.params.eventoId]);
 
   useEffect(() => {
-    const newSocket = io("https://tev-server.vercel.app/");
+    // const newSocket = io("https://tev-server.vercel.app/");
+    const newSocket = io("http://192.168.1.48:4000");
     setSocket(newSocket);
 
     newSocket.on("connect", () => {
@@ -133,6 +136,11 @@ const TiemposScreen = () => {
 
   const handleEspecialPress = (especialId) => {
     setSelectedEspecialId(especialId);
+    setShowTotal(false);
+  };
+
+  const handleTotalPress = () => {
+    setShowTotal(true);
   };
 
   // console.log(data);
@@ -165,19 +173,34 @@ const TiemposScreen = () => {
                     className="p-2 mx-1 bg-zinc-200 rounded-sm"
                     onPress={() => handleEspecialPress(especial._id)}
                   >
-                    <Text>{especial.nombre}</Text>
+                    <Text className="">{especial.nombre}</Text>
                   </TouchableOpacity>
                 ))}
               </Text>
             ))}
+
+            <View className="flex justify-end">
+              <TouchableOpacity
+                className="p-2 mx-1 bg-zinc-300 rounded-sm"
+                onPress={handleTotalPress}
+              >
+                <Text className="font-bold">Total</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </ScrollView>
       </View>
 
-      {selectedEspecial && (
+      {showTotal ? (
         <ScrollView>
-          <TiempoTabla especial={selectedEspecial} />
+          <TablaAcumulada especiales={especiales} />
         </ScrollView>
+      ) : (
+        selectedEspecial && (
+          <ScrollView>
+            <TiempoTabla especial={selectedEspecial} />
+          </ScrollView>
+        )
       )}
     </Layout>
   );

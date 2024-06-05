@@ -5,13 +5,18 @@ const TiempoTabla = ({ especial, admin }) => {
   // Calculo del tiempo resultado
   const tiemposConResultado = especial.tiempos.map((tiempo) => ({
     ...tiempo,
-    tiempoResultado: parseInt(tiempo.horaLlegada) - parseInt(tiempo.horaSalida),
+    tiempoResultado:
+      Number(tiempo.horaLlegada) -
+      Number(tiempo.horaSalida) +
+      Number(tiempo.penalizacion),
   }));
 
   // Ordenar tiempos
   const tiemposOrdenados = tiemposConResultado.sort(
     (a, b) => a.tiempoResultado - b.tiempoResultado
   );
+
+  // console.log(tiemposConResultado);
 
   return (
     <View>
@@ -28,7 +33,11 @@ const TiempoTabla = ({ especial, admin }) => {
 
           return (
             <TiempoLineCard
-              tiempo={item}
+              tiempo={{
+                ...item,
+                horaLlegada: item.tiempoResultado,
+                horaSalida: 0, // Asumiendo que queremos mostrar el tiempo acumulado total}
+              }}
               posicion={index + 1}
               diferenciaPrimero={item.tiempoResultado - tiempoPrimero}
               diferenciaAnterior={
