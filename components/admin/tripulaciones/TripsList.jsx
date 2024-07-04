@@ -7,6 +7,8 @@ const TripsList = ({ tripulaciones }) => {
       <FlatList
         className="px-3 h-screen"
         keyboardShouldPersistTaps="handled"
+        nestedScrollEnabled={true}
+        scrollEnabled={false}
         data={tripulaciones}
         keyExtractor={(trip) => trip._id}
         renderItem={({ item }) => <TripCard trip={item} />}

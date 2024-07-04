@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { GET_TRIPS_EVENTO } from "../../../graphql/evento/tripulacion";
 import Layout from "../../../components/Layout";
 import TripsList from "../../../components/admin/tripulaciones/TripsList";
@@ -46,7 +46,9 @@ const TripScreen = () => {
         </Text>
       </TouchableOpacity>
 
-      <TripsList tripulaciones={data.tripulacionesEvent} />
+      <ScrollView>
+        <TripsList tripulaciones={data.tripulacionesEvent} />
+      </ScrollView>
     </Layout>
   );
 };
