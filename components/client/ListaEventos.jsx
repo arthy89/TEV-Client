@@ -24,7 +24,7 @@ const ListaEventos = () => {
     <FlatList
       className="px-3 h-screen"
       keyboardShouldPersistTaps="handled"
-      data={data.eventos}
+      data={[...data.eventos].reverse()}
       keyExtractor={(evento) => evento._id}
       renderItem={({ item }) => <CardEvento evento={item} />}
       refreshControl={

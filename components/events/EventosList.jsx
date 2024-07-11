@@ -24,7 +24,7 @@ const EventosAdminList = () => {
     <FlatList
       className="px-3 h-4/5"
       keyboardShouldPersistTaps="handled"
-      data={data.eventos}
+      data={[...data.eventos].reverse()}
       keyExtractor={(evento) => evento._id}
       renderItem={({ item }) => <EventoAdminCard evento={item} />}
       refreshControl={

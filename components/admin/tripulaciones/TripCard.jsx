@@ -9,7 +9,7 @@ const TripCard = ({ trip }) => {
   });
 
   return (
-    <TouchableOpacity className="bg-zinc-200 rounded-lg p-2 shadow-sm shadow-zinc-300 mt-3 flex flex-row justify-between">
+    <View className="bg-zinc-200 rounded-lg p-2 shadow-sm shadow-zinc-300 mt-3 flex flex-row justify-between">
       <View className="flex justify-center">
         <Text className="text-md font-bold">
           <Text className="text-lg">{trip.autoNum} </Text>
@@ -33,7 +33,7 @@ const TripCard = ({ trip }) => {
       >
         <Ionicons name="trash" size={20} color="white" />
       </TouchableOpacity>
-    </TouchableOpacity>
+    </View>
   );
 };
 

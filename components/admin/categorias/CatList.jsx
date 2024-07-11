@@ -6,15 +6,17 @@ import { GET_EVENTO_M } from "../../../graphql/evento/evento";
 
 const CatList = ({ categorias }) => {
   return (
-    <View>
+    <ScrollView>
       <FlatList
-        className="px-3 h-screen"
+        className="px-3 pb-2"
         keyboardShouldPersistTaps="handled"
         data={categorias}
         keyExtractor={(cat) => cat._id}
+        nestedScrollEnabled={true}
+        scrollEnabled={false}
         renderItem={({ item }) => <CatCard cat={item} />}
       />
-    </View>
+    </ScrollView>
   );
 };
 

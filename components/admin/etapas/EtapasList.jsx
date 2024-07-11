@@ -1,4 +1,4 @@
-import { Text, FlatList, View } from "react-native";
+import { Text, FlatList, View, ScrollView } from "react-native";
 import EtapaCard from "./EtapaCard";
 import { useQuery } from "@apollo/client";
 import { GET_EVENTO_M } from "../../../graphql/evento/evento";
@@ -23,16 +23,17 @@ const EtapasList = () => {
   if (error) return <Text className="text-center text-lg mt-10">Error!!</Text>;
 
   return (
-    <View>
-      <Text className="font-bold text-xl mx-3">Etapas</Text>
+    <ScrollView>
       <FlatList
-        className="px-3 h-4/5"
+        className="px-3 pb-2"
         keyboardShouldPersistTaps="handled"
         data={data.evento.etapas}
         keyExtractor={(evento) => evento._id}
+        nestedScrollEnabled={true}
+        scrollEnabled={false}
         renderItem={({ item }) => <EtapaCard etapa={item} />}
       />
-    </View>
+    </ScrollView>
   );
 };
 

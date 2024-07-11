@@ -1,11 +1,11 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, ScrollView } from "react-native";
 import TripCard from "./TripCard";
 
 const TripsList = ({ tripulaciones }) => {
   return (
-    <View>
+    <ScrollView>
       <FlatList
-        className="px-3 h-screen"
+        className="px-3 pb-2"
         keyboardShouldPersistTaps="handled"
         nestedScrollEnabled={true}
         scrollEnabled={false}
@@ -13,7 +13,7 @@ const TripsList = ({ tripulaciones }) => {
         keyExtractor={(trip) => trip._id}
         renderItem={({ item }) => <TripCard trip={item} />}
       />
-    </View>
+    </ScrollView>
   );
 };
 
