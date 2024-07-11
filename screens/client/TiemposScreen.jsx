@@ -45,8 +45,8 @@ const TiemposScreen = () => {
   }, [route.params.eventoId]);
 
   useEffect(() => {
-    // const newSocket = io("https://tev-server.vercel.app/");
-    const newSocket = io("http://192.168.1.48:4000");
+    const newSocket = io("https://tev-server.vercel.app/");
+    // const newSocket = io("http://192.168.1.48:4000");
     setSocket(newSocket);
 
     newSocket.on("connect", () => {
