@@ -17,7 +17,7 @@ const TripCard = ({ trip }) => {
           {trip.navegante.apellidos}
         </Text>
         <Text>
-          {trip.categoria} - {trip.autoMarca} {trip.autoModelo}
+          {trip.categoria} - {trip.auto}
         </Text>
       </View>
 

@@ -48,8 +48,7 @@ export const GET_ESP_P = gql`
             nombre
             apellidos
           }
-          autoMarca
-          autoModelo
+          auto
           autoNum
           categoria
         }

@@ -54,15 +54,12 @@ const TiempoFormScreen = () => {
     horasSalida: "",
     minutosSalida: "",
     segundosSalida: "",
-    milisegundosSalida: "",
     horasLlegada: "",
     minutosLlegada: "",
     segundosLlegada: "",
-    milisegundosLlegada: "",
     horasPena: "",
     minutosPena: "",
     segundosPena: "",
-    milisegundosPena: "",
   });
 
   // para evitar bucles infinitos
@@ -110,13 +107,12 @@ const TiempoFormScreen = () => {
   const handleChange = (name, value) =>
     setTiempoForm({ ...tiempoForm, [name]: value });
 
-  function tiempoToMs(horas, minutos, segundos, milisegundos) {
+  function tiempoToMs(horas, minutos, segundos) {
     const horasMs = horas * 60 * 60 * 1000;
     const minutosMs = minutos * 60 * 1000;
     const segundosMs = segundos * 1000;
-    const milisegundosMs = parseInt(milisegundos);
 
-    const tiempoTotalMs = horasMs + minutosMs + segundosMs + milisegundosMs;
+    const tiempoTotalMs = horasMs + minutosMs + segundosMs;
     return tiempoTotalMs;
   }
 
@@ -132,14 +128,12 @@ const TiempoFormScreen = () => {
       tiempoForm.horasSalida,
       tiempoForm.minutosSalida,
       tiempoForm.segundosSalida,
-      tiempoForm.milisegundosSalida
     );
 
     tiemposTrip.horaLlegada = tiempoToMs(
       tiempoForm.horasLlegada,
       tiempoForm.minutosLlegada,
       tiempoForm.segundosLlegada,
-      tiempoForm.milisegundosLlegada
     );
 
     if (!tiemposTrip.penalizacion) {
@@ -147,10 +141,10 @@ const TiempoFormScreen = () => {
         tiempoForm.horasPena,
         tiempoForm.minutosPena,
         tiempoForm.segundosPena,
-        tiempoForm.milisegundosPena
       );
     }
     // console.log(tiemposTrip);
+    // return tiemposTrip;
 
     crearTiempo({
       variables: {
@@ -254,18 +248,6 @@ const TiempoFormScreen = () => {
             onChangeText={(text) => handleChange("segundosSalida", text)}
           />
         </View>
-
-        <View>
-          <Text className="font-bold text-md text-center">Milisegs</Text>
-          <TextInput
-            className="flex self-center items-center text-lg bg-zinc-200 py-3 px-4 rounded-md mb-2 w-14"
-            style={{ lineHeight: 0 }}
-            keyboardType="numeric"
-            placeholder="00"
-            placeholderTextColor="#a1a1aa"
-            onChangeText={(text) => handleChange("milisegundosSalida", text)}
-          />
-        </View>
       </View>
 
       {/* HORA DE LLEGADA */}
@@ -306,18 +288,6 @@ const TiempoFormScreen = () => {
             onChangeText={(text) => handleChange("segundosLlegada", text)}
           />
         </View>
-
-        <View>
-          <Text className="font-bold text-md text-center">Milisegs</Text>
-          <TextInput
-            className="flex self-center items-center text-lg bg-zinc-200 py-3 px-4 rounded-md mb-2 w-14"
-            style={{ lineHeight: 0 }}
-            keyboardType="numeric"
-            placeholder="00"
-            placeholderTextColor="#a1a1aa"
-            onChangeText={(text) => handleChange("milisegundosLlegada", text)}
-          />
-        </View>
       </View>
 
       {/* PENALIZACION */}
@@ -356,18 +326,6 @@ const TiempoFormScreen = () => {
             placeholder="00"
             placeholderTextColor="#a1a1aa"
             onChangeText={(text) => handleChange("segundosPena", text)}
-          />
-        </View>
-
-        <View>
-          <Text className="font-bold text-md text-center">Milisegs</Text>
-          <TextInput
-            className="flex self-center items-center text-lg bg-zinc-200 py-3 px-4 rounded-md mb-2 w-14"
-            style={{ lineHeight: 0 }}
-            keyboardType="numeric"
-            placeholder="00"
-            placeholderTextColor="#a1a1aa"
-            onChangeText={(text) => handleChange("milisegundosPena", text)}
           />
         </View>
       </View>

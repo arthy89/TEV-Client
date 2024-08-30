@@ -108,10 +108,7 @@ const TiempoLineCard = ({
         </View>
         <View>
           <Text className="text-lg font-medium" style={{ marginBottom: -10 }}>
-            {tiempo.tripulacion.autoMarca}
-          </Text>
-          <Text className="text-lg font-medium">
-            {tiempo.tripulacion.autoModelo}
+            {tiempo.tripulacion.auto}
           </Text>
         </View>
       </View>

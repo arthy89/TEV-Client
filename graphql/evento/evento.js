@@ -64,8 +64,7 @@ export const GET_EVENTO_TIEMPOS = gql`
                 nombre
                 apellidos
               }
-              autoMarca
-              autoModelo
+              auto
               autoNum
               categoria
             }
@@ -111,6 +110,8 @@ export const CREAR_EVENTO = gql`
     $lugar: String!
     $fecha: String!
     $hora: String!
+    $file: Upload
+    $rutaUrl: String
   ) {
     crearEvento(
       nombre: $nombre
@@ -120,9 +121,12 @@ export const CREAR_EVENTO = gql`
       lugar: $lugar
       fecha: $fecha
       hora: $hora
+      file: $file
+      rutaUrl: $rutaUrl
     ) {
       nombre
       descripcion
+      imgUrl
     }
   }
 `;

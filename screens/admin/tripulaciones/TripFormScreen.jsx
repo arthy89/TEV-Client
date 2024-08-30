@@ -46,8 +46,7 @@ const TripFormScreen = () => {
     navegante: "",
     eventoId: "",
     categoria: "",
-    autoMarca: "",
-    autoModelo: "",
+    auto: "",
     autoNum: "",
     equipoNombre: "",
   });
@@ -167,8 +166,7 @@ const TripFormScreen = () => {
         navegante: tripulacion.navegante,
         eventoId: tripulacion.eventoId,
         categoria: tripulacion.categoria,
-        autoMarca: tripulacion.autoMarca,
-        autoModelo: tripulacion.autoModelo,
+        auto: tripulacion.auto,
         autoNum: tripulacion.autoNum,
         equipoNombre: tripulacion.equipoNombre,
       },
@@ -345,22 +343,13 @@ const TripFormScreen = () => {
 
         {/* Vehículo */}
         <Text className="mt-2 mx-5 font-bold text-2xl">Vehículo</Text>
-        <Text className="mx-5 font-bold text-xl">Marca</Text>
+        {/* <Text className="mx-5 font-bold text-xl">Marca</Text> */}
         <TextInput
           className="flex self-center items-center text-lg bg-zinc-200 py-3 px-4 rounded-md w-11/12 mb-2"
           style={{ lineHeight: 0 }}
-          placeholder="Marca del vehículo..."
+          placeholder="Marca y modelo del vehículo"
           placeholderTextColor="#a1a1aa"
-          onChangeText={(text) => handleChange("autoMarca", text)}
-        />
-
-        <Text className="mx-5 font-bold text-xl">Modelo</Text>
-        <TextInput
-          className="flex self-center items-center text-lg bg-zinc-200 py-3 px-4 rounded-md w-11/12 mb-2"
-          style={{ lineHeight: 0 }}
-          placeholder="Modelo del vehículo..."
-          placeholderTextColor="#a1a1aa"
-          onChangeText={(text) => handleChange("autoModelo", text)}
+          onChangeText={(text) => handleChange("auto", text)}
         />
 
         <Text className="mx-5 font-bold text-xl">Número</Text>
